@@ -1,8 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const route = require("./routes/routes");
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 7000;
 
 
 mongoose.connect('mongodb://localhost:27017/news-api-app',(err) => {
@@ -13,6 +14,8 @@ mongoose.connect('mongodb://localhost:27017/news-api-app',(err) => {
 
 app.use(cors());
 app.use(express.json());
+app.use("/api", route);
+
 
 app.get("*", (req, res) => {
   res.status(404).json({
