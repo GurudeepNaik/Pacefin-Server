@@ -1,17 +1,17 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-
 const app = express();
-app.use(cors());
 const PORT = process.env.PORT || 8080;
+
 
 mongoose.connect('mongodb://localhost:27017/news-api-app',(err) => {
     if (err) console.log(err);
     else console.log("Database Connected");
-  }
+}
 );
 
+app.use(cors());
 app.use(express.json());
 
 app.get("*", (req, res) => {
